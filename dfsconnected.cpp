@@ -3,62 +3,43 @@
 using namespace std;
 
 void addEdge(vector<int> adj[],int u, int v){
-
     adj[u].push_back(v);
     adj[v].push_back(u);
-
-}
-
-void printAdjList(vector<int> adj[],int v){
-
-    for(int i=0;i<v;i++){
-
-        for(int k: adj[i]){
-            cout<<k;
-        }
-        cout<<endl;
-    }
-
 }
 
 void dfsrecursive(vector<int> adj[],bool visited[],int s){
-
     visited[s]=true;
     cout<< s<<" ";
     for(int k: adj[s]){
         if(visited[k]==false){
-            dfsrecursive(adj,visited,kq);
+            dfsrecursive(adj,visited,k);
         }
     }
-
 }
 
 void dfs(vector<int> adj[],int v,int s){
-
 
     bool visited[v];
     for(int i=0;i<v;i++){
         visited[i]=false;
     }
     dfsrecursive(adj,visited,s);
-
-
 }
 
 
-
-
 int main(){
-    int v=5;
+    int v=7;
     vector<int> adj[v];
-    addEdge(adj,0,1);
-    addEdge(adj,0,2);
+    addEdge(adj,1,2);
     addEdge(adj,1,3);
-    addEdge(adj,1,4);
-    addEdge(adj,3,2);
-    addEdge(adj,3,4);
-    printAdjList(adj,v);
-    dfs(adj,v,0);
+    addEdge(adj,2,5);
+    addEdge(adj,2,4);
+    addEdge(adj,3,5);
+    addEdge(adj,4,5);
+    addEdge(adj,4,6);
+    addEdge(adj,5,6);
+    cout<<"DFS of given graph is - "<<endl;
+    dfs(adj,v,1);
 
     return 0;
 
